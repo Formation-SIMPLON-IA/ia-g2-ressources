@@ -36,11 +36,11 @@ flowchart TD
 
 **Légende** :
 - 🟢 **vert** = déjà outillé en M0 (étape 5 — palier C6 *imiter* puis *adapter*)
-- 🟡 **orange** = nouveau en M1 (étape 4 — démarrage C5 *imiter*, C6 progresse en parallèle)
+- 🟡 **orange** = nouveau en M1 (étape 4 — C5 en M1-B1, niveaux *imiter* puis *adapter* ; M1-B2 travaille C6 au niveau *adapter*)
 - ⚪ **gris** = à venir dans les modules suivants
 
-> 💡 **La grande bascule M0 → M1** : en M0 tu **consommais** un modèle
-> qu'on te livrait clé en main. En M1 tu vas **toi-même produire** le
+> 💡 **La grande bascule M0 → M1** : en M0 tu **intégrais** un modèle
+> déjà entraîné dans un service que tu exposais. En M1 tu vas **toi-même produire** le
 > modèle, le packager, et le rendre consommable par d'autres. Tu changes
 > de côté du miroir.
 
@@ -64,7 +64,7 @@ flowchart LR
     subgraph API["🌐 Service HTTP"]
         A1[FastAPI<br/>routes /health /predict]
         A2[Pydantic<br/>validation entrée/sortie]
-        A3[Loguru<br/>logs structurés]
+        A3[Loguru<br/>logs en texte lisible]
         A4[pytest + TestClient<br/>tests fonctionnels]
     end
 
@@ -142,7 +142,7 @@ flowchart LR
 | **C2** | Identifier les risques éthiques | — | — | — | — |
 | **C3** | Préparer les données | — | — | — | — |
 | **C4** | Choisir un modèle | — | — | — | — |
-| **C5** | **Entraîner un modèle** | — | — | **▰▱▱ imiter** | **▰▰▱ adapter** |
+| **C5** | **Entraîner un modèle** | — | — | **▰▱▱ imiter** puis **▰▰▱ adapter** | — |
 | **C6** | **Implémenter une solution IA** | **▰▱▱ imiter** | **▰▰▱ adapter** | — | **▰▰▱ adapter** |
 | **C7** | Concevoir une architecture | — | — | — | — |
 | **C8** | Mesurer la performance | — | — | — | — |
@@ -152,13 +152,13 @@ flowchart LR
 - En M0 tu as démarré **uniquement C6** (implémenter) : tu as fait ▰▱▱
   *imiter* en M0-B1 (intégrer un modèle livré), puis ▰▰▱ *adapter* en
   M0-B2 (adapter le format de sortie 5⭐ → 3 classes).
-- En M1 tu démarres **C5** (entraîner) en parallèle de la suite de C6,
-  les deux progressent ensemble.
+- En M1 tu démarres **C5** (entraîner) dans M1-B1, niveaux *imiter* puis
+  *adapter* ; M1-B2 travaille C6 au niveau *adapter*.
 - Toutes les autres compétences arrivent **plus tard** dans le parcours
   (C1, C2, C3 surtout en M2-M3 ; C4 en M4 ; C7 en M7 ; C8-C9 en M5-M6).
 
-> ⚠️ **C'est normal d'avoir l'impression de n'avoir « rien fait »** sur 7
-> des 9 compétences à la fin de M0. La progression est **séquentielle et
+> ⚠️ **C'est normal d'avoir l'impression de n'avoir « rien fait »** sur 8
+> des 9 compétences à la fin de M0 (une seule, C6, est travaillée). La progression est **séquentielle et
 > raisonnée** — on ne dispersera jamais l'attention sur 9 compétences en
 > parallèle.
 
@@ -166,7 +166,7 @@ flowchart LR
 
 ## 4. Vocabulaire — ce que tu manipules maintenant sans hésiter
 
-À l'issue de M0, ces 15 termes devraient être en zone ☀️ *C'est clair*
+À l'issue de M0, ces 25 termes devraient être en zone ☀️ *C'est clair*
 sur ton mur réflexif. Si **3 ou plus** sont encore en 🌫️ *Flou*, signale-le
 en message privé sur Discord avant le premier jour de M1.
 
@@ -177,7 +177,7 @@ en message privé sur Discord avant le premier jour de M1.
 | **Modèle** | modèle pré-entraîné, inférence, `.joblib`, chargement au démarrage |
 | **Conteneurisation** | Dockerfile, image, conteneur, port, healthcheck |
 | **Tests** | `TestClient`, fixture, assertion, test fonctionnel |
-| **Logs** | log structuré, niveau (INFO/ERROR), Loguru, request_id |
+| **Logs** | log (texte lisible), niveau (INFO/ERROR), Loguru |
 
 ---
 
@@ -214,11 +214,11 @@ en message privé sur Discord avant le premier jour de M1.
 - [ ] J'ai relu mon `README.md` M0-B2 et je sais expliquer le mapping
       5⭐ → 3 classes.
 - [ ] Je sais relancer **mon API M0-B1** en moins de 5 min.
-- [ ] J'ai parcouru ce récap et j'ai identifié **les 3 termes** qui me
-      semblent les plus flous (à pointer en message privé).
+- [ ] J'ai parcouru le tableau de vocabulaire : si **3 termes ou plus** sont
+      encore flous, je l'ai signalé en message privé sur Discord.
 - [ ] J'ai lu le carnet d'entrée M1 (`M1_avant-module.md`) distribué
       sur Discord.
-- [ ] Mon environnement Python répond au sanity check du carnet M1.
+- [ ] Python 3.11 est disponible (`python --version` affiche 3.11).
 
 ---
 

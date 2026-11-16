@@ -107,8 +107,9 @@ Cette table te permet de **te projeter** sur le parcours complet et de savoir
 | **Certification** | CT4 + CT5 + CT6 *(soutenance — exercice CT6 par excellence)* + CT7 *(posture face au jury métier)* |
 
 >  **Lecture clé** : sur l'ensemble du parcours, tu seras observé·e sur
-> **toutes les CT sauf CT1 et CT2** dans plusieurs modules, et tu auras
-> au moins **une opportunité** d'observation pour chacune.
+> **CT4 et CT5 dans tous les modules** (de M0 à la certification), **CT6 à partir de
+> M3**, **CT9 à partir de M2**, **CT3 en M3, M7 et M8**, **CT1 en M4**, **CT2 de M5 à M6**,
+> **CT7 en M7 et à la certification**, **CT8 en M2**.
 
 ---
 

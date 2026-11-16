@@ -28,10 +28,10 @@
 | # | Étape | Geste | Fonction clé | Piège typique |
 |---|---|---|---|---|
 | 1 | **Charger** | Lire le CSV, regarder ce qu'on a | `pd.read_csv()` | Mauvais séparateur, types mal inférés (`object` au lieu de `float`) |
-| 2 | **Explorer** | Taille, manquants, équilibre des classes | `.shape`, `.isna().sum()`, `.value_counts()` | Y passer 2h — 15 min suffisent en N1 |
+| 2 | **Explorer** | Taille, manquants, équilibre des classes | `.shape`, `.isna().sum()`, `.value_counts()` | Y passer trop de temps : en M1-B1 le plafond est d'une heure |
 | 3 | **Découper** | Train/test reproductible et stratifié | `train_test_split(stratify=y, random_state=42)` | Oublier `stratify=y` → classes déséquilibrées dans le test |
 | 4 | **Entraîner** | `fit` sur train uniquement | `model.fit(X_train, y_train)` | Fitter sur tout `X` (data leakage) |
-| 5 | **Évaluer** | Métriques sur test (pour mesurer, pas pour choisir une config) | `f1_score`, `roc_auc_score`, `confusion_matrix` | Lire `accuracy` quand les classes sont déséquilibrées |
+| 5 | **Évaluer** | Métriques sur le test interne (pour comparer tes essais) | `f1_score`, `roc_auc_score`, `confusion_matrix` | Lire `accuracy` quand les classes sont déséquilibrées |
 | 6 | **Persister** | Sauver le pipeline complet, pas le modèle seul | `joblib.dump(pipeline, path, compress=3)` | Sauver `clf` sans le preprocessing → impossible de prédire en prod |
 
 ---
@@ -39,7 +39,7 @@
 ### Les 3 invariants à mémoriser
 
 1. **`random_state=42` partout** : pour que tu puisses reproduire le même résultat demain.
-2. **Le test mesure, il ne choisit pas.** Pour départager des configs/modèles, passe par une validation (`cross_val_score`) ; le test ne sert qu'**une fois, à la fin**, pour annoncer la perf du modèle retenu. *(En N1, comparer 2-3 configs fixes directement sur le test est une simplification assumée — mais ne re-tire jamais le split jusqu'à ce que le score plaise : c'est une fuite.)*
+2. **Deux jeux à ne pas confondre.** *Test interne* : les 20 % mis de côté lors du découpage ; il sert à comparer tes essais. *Holdout* : un fichier fourni à part ; il est évalué une seule fois, à la fin. Ne re-tire jamais le split jusqu'à ce que le score plaise : c'est une fuite. *(La validation croisée, `cross_val_score`, est vue plus tard : elle n'est pas utilisée en M1.)*
 3. **On sauve le pipeline (preprocessing + modèle), pas le modèle seul.** Sinon les transformations ne sont pas appliquées au moment de la prédiction.
 
 ---
@@ -75,7 +75,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Le scaler est donc justifié ici, et l'invariant #3 prend tout son sens :
 # on sauve le pipeline ENTIER, sinon le scaling n'est pas rejoué en prod.
 # ⚠️ Si tu passes à un modèle à base d'arbres (RandomForest, GradientBoosting),
-#    RETIRE le scaler : les arbres sont insensibles à l'échelle (cf. notebooks 01/02).
+#    RETIRE le scaler : les arbres sont insensibles à l'échelle.
 pipeline = Pipeline([
     ("scaler", StandardScaler()),
     ("clf", LogisticRegression(max_iter=1000, random_state=42)),

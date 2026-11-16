@@ -44,7 +44,7 @@
 - **ColumnTransformer** `[M2]` — outil scikit-learn pour appliquer des prétraitements différents à des colonnes différentes dans un pipeline.
 - **Concept drift** `[M6]` — la **relation** entre features et cible change (ce qui prédisait un défaut hier ne le prédit plus). À distinguer du data drift.
 - **Conteneur / Docker** `[M0/M5]` — empaqueter une application + ses dépendances pour qu'elle tourne pareil partout. `docker-compose` orchestre plusieurs conteneurs.
-- **Contract test (modèle)** `[M5]` — test qui vérifie qu'un modèle respecte un contrat (mêmes colonnes en entrée, sortie déterministe) avant déploiement.
+- **Contract test (modèle)** `[M1]` — test qui vérifie qu'un modèle respecte un contrat (mêmes colonnes en entrée, sortie déterministe) avant déploiement.
 - **Contrat de données (data contract)** `[M3]` — spécification des colonnes, types et contraintes qu'un pipeline doit livrer en sortie ; le pipeline est conforme quand il **honore le contrat**, pas seulement quand il tourne.
 - **Courbe d'apprentissage (learning curve)** `[M4]` — courbe du score (train et validation) en fonction de la **quantité de données** d'entraînement. Sert à répondre à « plus de données m'aiderait-il ? » : les deux courbes qui se rejoignent bas = sous-apprentissage (changer de modèle), un écart qui persiste = surapprentissage (plus de données ou régularisation). ≠ courbe de validation, qui fait varier un hyperparamètre.
 - **Coût d'inférence** `[M7]` — coût (latence, mémoire, €) de **chaque prédiction** en production, multiplié par le volume. Souvent sous-estimé pour les LLM.
@@ -63,7 +63,7 @@
 
 ## E
 
-- **EDA** 🎓 `[M2/M4]` — Exploratory Data Analysis : explorer les données (distributions, manquants, corrélations) avant de modéliser.
+- **EDA** 🎓 `[M1]` — Exploratory Data Analysis : explorer les données (distributions, manquants, corrélations) avant de modéliser.
 - **ECE (Expected Calibration Error)** `[M6]` — écart moyen entre la probabilité annoncée et le taux réellement observé, pondéré par le nombre de cas. 0 = parfaitement calibré. Chiffre la calibration, là où le reliability diagram la montre.
 - **Explicabilité — locale / globale** 🎓 `[M6]` — une explication **locale** dit pourquoi *ce* dossier a reçu *cette* prédiction (ce qu'exige un client, un juriste) ; une explication **globale** dit sur quoi le modèle s'appuie *en général* (ce qu'on met dans une note de conception). Les deux ne se déduisent pas l'une de l'autre.
 - **Explicabilité — par construction / post-hoc** 🎓 `[M6]` — un modèle linéaire ou un arbre court **est** son explication (par construction) ; sur un modèle opaque on applique **après coup** une méthode d'approximation (SHAP, LIME). Choisir un modèle interprétable, c'est éviter d'avoir à l'expliquer.
@@ -90,9 +90,9 @@
 - **Grafana** `[M5]` — outil de **dashboards** pour visualiser les métriques de monitoring (alimenté par Prometheus). On construit son dashboard, on n'en importe pas un tout fait.
 - **Hallucination** `[M7]` — un LLM affirme avec aplomb une information fausse ; le RAG et l'abstention la réduisent (sans la supprimer).
 - **Haut risque (AI Act)** `[M7]` — catégorie de l'AI Act définie par l'**usage** (art. 6 : composant de sécurité d'un produit réglementé comme un dispositif médical, ou cas listés en Annexe III : emploi, éducation, accès aux services essentiels, triage des urgences…), pas par le secteur. Impose gestion des risques, journalisation, transparence, supervision humaine.
-- **Healthcheck** `[M5]` — endpoint (`/health`) indiquant si un service est vivant ; utilisé par docker-compose et le monitoring.
+- **Healthcheck** `[M0]` — endpoint (`/health`) indiquant si un service est vivant ; utilisé par docker-compose et le monitoring.
 - **HITL (Human-in-the-loop)** `[M7]` — un humain valide ou tranche les cas incertains. Répond aux exigences de supervision de l'AI Act.
-- **Holdout (jeu de test final)** 🎓 `[M1]` — part des données mise de côté **avant** toute exploration et modélisation, ouverte **une seule fois** à la fin pour estimer la performance réelle. La validation croisée sert à *choisir* ; le holdout sert à *annoncer un chiffre*. Chaque décision prise en regardant le holdout entame sa neutralité.
+- **Holdout** 🎓 `[M1]` — fichier fourni à part ; il est évalué une seule fois, à la fin, pour estimer la performance réelle du modèle retenu. Le **test interne** (les 20 % mis de côté lors du découpage) sert à comparer tes essais ; le holdout sert à annoncer un chiffre. Chaque décision prise en regardant le holdout entame sa neutralité.
 - **HuggingFace** `[M4]` — plateforme partageant des modèles pré-entraînés (« le GitHub des modèles »). cf. panorama Hugging Face Hub (ajouté plus tard dans ce dépôt).
 - **Hyperparamètre** `[M1/M4]` — réglage choisi **avant** l'entraînement (nombre d'arbres, profondeur) ; ≠ paramètre, appris pendant.
 
@@ -115,7 +115,7 @@
 - **LLM (Large Language Model)** `[M7]` — grand modèle de langage généraliste (GPT-4, Mistral, Llama). Puissant, coûteux, opaque.
 - **MAE / RMSE** 🎓 `[M4]` — erreurs moyennes en régression (MAE = écart moyen absolu ; RMSE pénalise plus les grosses erreurs).
 - **Métadonnée** `[M0/M3]` — donnée qui **décrit** une autre donnée (type, source, date, unité, fraîcheur) ; le catalogue de ce qu'on manipule.
-- **Métadonnées de modèle** `[M5/M6]` — le JSON qui accompagne l'artefact (version, version de scikit-learn, empreinte du jeu d'entraînement, métriques). C'est un **contrat** : un service qui lit une clé absente tombe en erreur. On repart des métadonnées de production et on surcharge ce qui change.
+- **Métadonnées de modèle** `[M1]` — le JSON qui accompagne l'artefact (version, version de scikit-learn, empreinte du jeu d'entraînement, métriques). C'est un **contrat** : un service qui lit une clé absente tombe en erreur. On repart des métadonnées de production et on surcharge ce qui change.
 - **Métrique batch / métrique de flux** `[M6]` — une métrique de flux est exposée en continu par un service et scrapée (latence, volume, classes prédites) ; une métrique batch est calculée une fois sur un jeu figé (PSI, F1 sur 12 semaines). Un dashboard ne peut afficher que ce qui est **exposé** — mettre une mesure batch dans Grafana produit un panneau vide.
 - **MLflow** `[M5]` — outil de **tracking** d'expériences : historiser versions, hyperparamètres et métriques pour comparer les runs. N'est pas un détecteur de drift.
 - **MLOps** `[M5]` — pratiques d'industrialisation du ML (CI/CD, monitoring, versionning, réentraînement) ; le DevOps appliqué aux modèles.
@@ -132,8 +132,8 @@
 - **Overfitting (surapprentissage)** 🎓 `[M4]` — le modèle mémorise le jeu d'entraînement et généralise mal sur des données nouvelles.
 - **Paramètre** `[M1]` — valeur interne **apprise** pendant l'entraînement (poids, seuils). ≠ hyperparamètre.
 - **Parquet** `[M2/M3]` — format de stockage **par colonne** : compact, typage préservé, lecture sélective de colonnes ; ≠ CSV (texte, par ligne, types perdus). Choix de stockage à justifier, pas par défaut.
-- **PII (Personally Identifiable Information)** 🎓 `[M0/M2]` — donnée personnelle identifiante : directe (nom, e-mail, NIR, téléphone) ou indirecte par croisement (code postal + âge + métier). Ne doit ni sortir dans les logs (cf. M0-B1) ni entrer dans un modèle sans base légale (cf. M2-B2).
-- **Pipeline (scikit-learn)** `[M2]` — enchaînement reproductible de prétraitements + modèle, en un seul objet persistable.
+- **PII (Personally Identifiable Information)** 🎓 `[M1/M2]` — donnée personnelle identifiante : directe (nom, e-mail, NIR, téléphone) ou indirecte par croisement (code postal + âge + métier). Ne doit ni sortir dans les logs (cf. M1-B2) ni entrer dans un modèle sans base légale (cf. M2-B2).
+- **Pipeline (scikit-learn)** `[M1]` — enchaînement reproductible de prétraitements + modèle, en un seul objet persistable.
 - **Précision (precision)** 🎓 `[M1]` — parmi les cas prédits positifs, combien le sont vraiment.
 - **Prometheus** `[M5]` — outil qui **collecte** les métriques exposées par un service (`/metrics`) pour le monitoring (visualisées dans Grafana).
 - **Promotion (conditionnelle)** `[M6]` — ne remplacer le modèle en prod par un réentraîné **que s'il bat l'ancien**, mesuré sur le **même** jeu de référence. Règle type, écrite avant l'exécution : plancher de qualité tenu, aucune régression critique au-delà de la tolérance, au moins un gain minimum. Un rejet n'est pas une erreur — c'est une décision, et elle se journalise.
@@ -164,7 +164,7 @@
 - **Sobriété** `[transverse]` — choisir la solution la plus simple/légère qui résout le besoin ; garde-fou central du parcours contre le sur-engineering.
 - **SPOF (Single Point of Failure)** `[M7]` — composant unique dont la panne arrête tout le système (ex. modèle sur une seule machine). Risque d'architecture.
 - **SHAP (valeurs de Shapley)** 🎓 `[M6]` — méthode d'explication post-hoc qui répartit l'écart entre la prédiction moyenne et la prédiction d'un dossier entre les variables. Propriété clé : **additivité** (valeur de base + contributions = prédiction exacte). `TreeExplainer` est exact et rapide sur les modèles à arbres.
-- **Split (train/test)** 🎓 `[M1]` — séparer les données pour entraîner d'un côté, évaluer de l'autre. Temporel si l'ordre du temps compte.
+- **Split (train/test)** 🎓 `[M1]` — séparer les données pour entraîner d'un côté, évaluer de l'autre. Test interne : les 20 % mis de côté lors du découpage ; il sert à comparer tes essais. Temporel si l'ordre du temps compte.
 - **Sur-confiance / sous-confiance** `[M6]` — un modèle sur-confiant annonce des probabilités plus élevées que la réalité observée (il crie au loup) ; sous-confiant, l'inverse. Se lit sur le reliability diagram, se chiffre par l'ECE.
 - **Token** `[M7]` — unité de texte (≈ ¾ d'un mot) ; les LLM facturent au token (l'output coûte souvent plus que l'input).
 - **Tolérance (de régression)** `[M6]` — baisse maximale acceptée sur une métrique avant de refuser une nouvelle version. Se fixe sur le **coût métier** d'une régression et sur le bruit de mesure (≥ 2 σ), jamais après avoir vu le résultat : un seuil choisi après coup n'est plus un garde-fou, c'est une justification.
@@ -173,8 +173,8 @@
 
 ## V — Z
 
-- **Validation croisée (cross-validation)** 🎓 `[M4]` — évaluer un modèle sur plusieurs découpages pour une mesure plus robuste (KFold, TimeSeriesSplit).
+- **Validation croisée (cross-validation)** 🎓 `[M4]` — évaluer un modèle sur plusieurs découpages pour une mesure plus robuste (KFold, TimeSeriesSplit). Vue plus tard, pas utilisée en M1.
 - **Variable sensible** 🎓 `[M2]` — attribut protégé (sexe, âge, origine) dont l'usage peut induire de la discrimination.
 - **Vector store** `[M7]` — base indexant des embeddings pour la recherche par similarité (ChromaDB, FAISS).
-- **Versionner (un modèle)** `[M5]` — tracer chaque version du modèle (poids + params + métriques) pour comparer et revenir en arrière (tag git, MLflow).
+- **Versionner (un modèle)** `[M1]` — tracer chaque version du modèle (poids + params + métriques) pour comparer et revenir en arrière (tag git, MLflow).
 - **Zero-shot** `[M4/M8]` — faire exécuter une tâche par un modèle **sans aucun exemple** d'entraînement.

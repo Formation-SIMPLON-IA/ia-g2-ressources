@@ -1,7 +1,7 @@
 # Conventions de commit — Parcours IA G2
 
 > Comment écrire des **messages de commit clairs** sur tes repos perso
-> (M1-B1, M1-B2, et tous ceux qui suivent). Lecture : 5 min.
+> (M0-B1, M0-B2, M1-B1, M1-B2, et tous ceux qui suivent). Lecture : 5 min.
 
 ---
 
@@ -13,8 +13,7 @@ type(scope): description
 
 - **type** : la nature du changement
 - **scope** : la zone touchée
-- **description** : courte phrase à l'impératif, ≤ 72 caractères, **en
-  anglais** (convention pro), pas de point final
+- **description** : courte phrase à l'impératif, ≤ 72 caractères, pas de point final
 
 Exemple : `feat(api): add /predict endpoint with Pydantic validation`
 
@@ -45,6 +44,7 @@ Exemple : `feat(api): add /predict endpoint with Pydantic validation`
 | `eda` | Analyse exploratoire |
 | `training` | Pipeline d'entraînement |
 | `docs` | README, verdict.md, experiments.md |
+| `readme` | README du repo |
 
 Si le changement touche **plusieurs zones**, choisis le scope principal
 ou crée plusieurs commits.
@@ -58,7 +58,7 @@ ou crée plusieurs commits.
 - ✅ **Courte** : ≤ 72 caractères
 - ✅ **Minuscule** au début (sauf nom propre, sigle)
 - ✅ **Pas de point final**
-- ✅ **En anglais** en général— convention dans le métier
+- ✅ **Messages en anglais** (convention du métier), du début à la fin d'un repo
 
 ---
 
@@ -86,7 +86,7 @@ chore(docker): pin python:3.11-slim base image
 | `feat: stuff` | Description vide de sens |
 | `feat(api): added new endpoint.` | Participe passé + point final |
 | `feat(api): I added a new endpoint to handle predictions for the model trained yesterday` | Trop long, met le détail en body si besoin |
-| `feat: ajout endpoint` | Si tu choisis EN, reste en EN |
+| `feat: ajout endpoint` | Message en français : les messages sont en anglais |
 
 ---
 
