@@ -97,7 +97,7 @@ flowchart LR
 
 **Légende** :
 - 🔵 **bleu** = vu en M0-B1 (Industrie Métallurgie Atlantique, API de maintenance prédictive, individuel)
-- 🟠 **orange** = ajouté en M0-B2 (Aubergine Hôtels, analyse de sentiment en français avec un modèle Hugging Face, stack Docker Compose, en binôme ou en poste solo)
+- 🟠 **orange** = ajouté en M0-B2 (Aubergine Hôtels, analyse de sentiment en français avec un modèle Hugging Face, stack Docker Compose, à deux ou seul·e)
 
 ### Ce qui arrive en M1 (nouveau)
 
@@ -168,7 +168,7 @@ flowchart LR
 
 À l'issue de M0, ces 15 termes devraient être en zone ☀️ *C'est clair*
 sur ton mur réflexif. Si **3 ou plus** sont encore en 🌫️ *Flou*, signale-le
-en rendez-vous individuel ou par message privé avant le premier jour de M1.
+en message privé sur Discord avant le premier jour de M1.
 
 | Famille | Termes |
 |---|---|
@@ -186,7 +186,9 @@ en rendez-vous individuel ou par message privé avant le premier jour de M1.
 À la fin de M1, ces **6 gestes** seront nouveaux :
 
 1. **Charger un dataset tabulaire** avec pandas et faire une EDA minimale
-   (distribution, corrélations, variable sensible).
+   (3 visualisations : distribution de la cible, une variable croisée avec la
+   cible, une distribution numérique asymétrique ; les colonnes sensibles sont
+   listées, pas analysées).
 2. **Splitter** correctement un dataset en train / test / holdout pour
    éviter de te mentir à toi-même.
 3. **Entraîner** un modèle scikit-learn (`RandomForest.fit()`) sur un
@@ -211,9 +213,9 @@ en rendez-vous individuel ou par message privé avant le premier jour de M1.
       ce que fait l'API.
 - [ ] J'ai relu mon `README.md` M0-B2 et je sais expliquer le mapping
       5⭐ → 3 classes.
-- [ ] Je sais relancer **mes deux APIs M0** (B1 et B2) en < 5 min.
+- [ ] Je sais relancer **mon API M0-B1** en moins de 5 min.
 - [ ] J'ai parcouru ce récap et j'ai identifié **les 3 termes** qui me
-      semblent les plus flous (à pointer en rendez-vous individuel ou par message privé).
+      semblent les plus flous (à pointer en message privé).
 - [ ] J'ai lu le carnet d'entrée M1 (`M1_avant-module.md`) distribué
       sur Discord.
 - [ ] Mon environnement Python répond au sanity check du carnet M1.

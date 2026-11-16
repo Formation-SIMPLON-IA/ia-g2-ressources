@@ -57,14 +57,16 @@ que tout tourne **avant** de coder.
 
 ---
 
-## 3. Travailler à deux (binôme) ou seul·e
+## 3. Briefs à deux uniquement
+
+> Les briefs individuels (dont ceux de M1) : tu commites directement sur `main`,
+> c'est permis. Tout ce qui suit ne vaut que pour un brief fait **à deux**.
 
 Un **seul** des deux fait « Use this template », puis ajoute l'autre en
 **collaborateur** (Settings → Collaborators). Le repo est **partagé**, avec
-**une branche par personne**. En poste solo, tu appliques les mêmes règles de
-branche et de pull request, sans invitation.
+**une branche par personne**. Pour un brief individuel, ignore cette section.
 
-> ⚠️ **Seul `main` est corrigé.** Le travail ne compte que une fois **fusionné
+> ⚠️ **Seul `main` est corrigé.** À deux, le travail ne compte qu'une fois **fusionné
 > dans `main` par pull request**.
 
 ```bash
@@ -153,7 +155,7 @@ demandent en général **au moins 3-4** (ex. `eda` / `training` / `verdict`).
 | Pas de `Co-authored-by` en binôme | collaboration invisible (CT9) | créditer les 2 auteurs |
 | Identité git non configurée | commits « inconnus » sur GitHub | `git config user.name/email` |
 | Commits `WIP` / vagues dans `main` | historique illisible | 1 intention = 1 commit clair |
-| Travail resté sur une branche | rien à corriger dans `main` | PR vers `main` avant le rendu |
+| Travail resté sur une branche | rien à corriger dans `main` | fusionner dans `main` (PR à deux) avant le rendu |
 | Gros modèle/dataset committé | repo lourd, clone lent | `.gitignore` + script de téléchargement |
 | Notebook non nettoyé (sorties lourdes) | diffs illisibles, repo gonflé | redémarrer le kernel + effacer les sorties avant commit |
 
@@ -163,7 +165,8 @@ demandent en général **au moins 3-4** (ex. `eda` / `training` / `verdict`).
 
 - **« Use this template » → ton repo perso** (pas un fork), tu travailles chez toi.
 - **Démarrer = 4 commandes** (clone, venv Python 3.11, install, test) **avant** de coder.
-- **À deux ou seul·e** : une branche par personne, fusion dans `main` par pull request, **seul `main` est corrigé**, `Co-authored-by` en pair-coding, **test croisé** du repo.
+- **Seul·e** : commits directement sur `main`, **seul `main` est corrigé**.
+- **À deux** : une branche par personne, fusion dans `main` par pull request, `Co-authored-by` en pair-coding, **test croisé** du repo.
 - **Jamais** committer `.venv`, `.env`, secrets, gros datasets/modèles — `git add`
   **ciblé**, pas `.` à l'aveugle.
 - Pour les **messages**, voir [`conventions_commit.md`](./conventions_commit.md).
